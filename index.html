@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fury QR ❤️</title>
+
+  <style>
+    :root {
+      --fire-red: #ff3b3b;
+      --fire-orange: #ff7a18;
+      --sun-glow: #ffb703;
+      --ink-black: #120c0c;
+      --cream-white: #fff6ee;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      background: linear-gradient(160deg, var(--fire-red), var(--fire-orange));
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      color: var(--cream-white);
+    }
+
+    /* 🔐 Key Screen */
+    .key-screen {
+      text-align: center;
+      animation: fadeIn 1.5s ease;
+    }
+
+    .key-screen h2 {
+      text-shadow: 0 0 20px var(--sun-glow);
+    }
+
+    .key-screen input {
+      padding: 15px;
+      font-size: 1.1rem;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+      margin-top: 15px;
+      text-align: center;
+    }
+
+    .key-screen button {
+      margin-top: 15px;
+      padding: 12px 30px;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 30px;
+      background: var(--ink-black);
+      color: var(--cream-white);
+      cursor: pointer;
+      box-shadow: 0 0 20px rgba(0,0,0,0.4);
+    }
+
+    /* 🎂 Intro */
+    .intro {
+      display: none;
+      text-align: center;
+      animation: fadeIn 2s ease;
+    }
+
+    .intro h1 {
+      font-size: 3rem;
+      animation: glow 2s infinite alternate;
+    }
+
+    .intro button {
+      margin-top: 20px;
+      padding: 12px 30px;
+      font-size: 1.1rem;
+      border-radius: 30px;
+      border: none;
+      background: var(--ink-black);
+      color: var(--cream-white);
+      cursor: pointer;
+    }
+
+    /* 🎥 Video */
+    .video-container {
+      display: none;
+      width: 90%;
+      max-width: 800px;
+      animation: zoomIn 1.5s ease forwards;
+    }
+
+    video {
+      width: 100%;
+      border-radius: 20px;
+      box-shadow: 0 0 40px var(--sun-glow);
+    }
+
+    /* 🖤 Floating Hearts */
+    .heart {
+      position: fixed;
+      bottom: -20px;
+      font-size: 20px;
+      color: var(--ink-black);
+      animation: floatUp 6s linear infinite;
+      opacity: 0.9;
+    }
+
+    @keyframes floatUp {
+      from { transform: translateY(0) scale(1); opacity: 1; }
+      to { transform: translateY(-120vh) scale(1.4); opacity: 0; }
+    }
+
+    /* 🎇 Fireworks */
+    .firework {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      animation: explode 1.4s ease-out infinite;
+    }
+
+    @keyframes explode {
+      0% { transform: scale(0); opacity: 1; }
+      100% { transform: scale(18); opacity: 0; }
+    }
+
+    @keyframes zoomIn {
+      from { transform: scale(0.5); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #fff; }
+      to { text-shadow: 0 0 35px var(--sun-glow); }
+    }
+
+    @media (max-width: 600px) {
+      .intro h1 { font-size: 2.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🔐 Key Screen -->
+  <div class="key-screen" id="keyScreen">
+    <h2>🔐 Enter Key</h2>
+    <input type="password" id="keyInput" placeholder="....." />
+    <br />
+    <button onclick="checkKey()">Unlock ❤️</button>
+  </div>
+
+  <!-- 🎂 Intro -->
+  <div class="intro" id="intro">
+    <h1>Hpy B'Day</h1><br>
+    <h2>#Darzy</h2><br>
+    <p>
+      Darling, don’t be afraid,<br>
+      I have loved you for a thousand years<br>
+      I’ll love you for a thousand more
+    </p>
+    <button onclick="startSurprise()">Open 🎁</button>
+  </div>
+
+  <!-- 🎥 Video -->
+  <div class="video-container" id="videoBox">
+    <video id="birthdayVideo" controls playsinline>
+      <source src="birthday-video.mp4" type="video/mp4" />
+    </video>
+  </div>
+
+  <script>
+    const SECRET_KEY = '#Z3';
+
+    function checkKey() {
+      const input = document.getElementById('keyInput').value;
+      if (input === SECRET_KEY) {
+        document.getElementById('keyScreen').style.display = 'none';
+        document.getElementById('intro').style.display = 'block';
+      } else {
+        alert('Wrong key!');
+      }
+    }
+
+    function startSurprise() {
+      document.getElementById('intro').style.display = 'none';
+      document.getElementById('videoBox').style.display = 'block';
+
+      const video = document.getElementById('birthdayVideo');
+      video.muted = false;
+      video.currentTime = 0;
+      video.play();
+
+      fireworks();
+    }
+
+    function fireworks() {
+      setInterval(() => {
+        const fw = document.createElement('div');
+        fw.className = 'firework';
+        fw.style.left = Math.random() * window.innerWidth + 'px';
+        fw.style.top = Math.random() * window.innerHeight + 'px';
+        fw.style.background = `hsl(${Math.random() * 360},100%,60%)`;
+        document.body.appendChild(fw);
+        setTimeout(() => fw.remove(), 1400);
+      }, 350);
+    }
+
+    setInterval(() => {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.innerText = '❤';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 7000);
+    }, 600);
+  </script>
+
+</body>
+</html>
