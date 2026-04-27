@@ -31,41 +31,9 @@
       color: var(--cream-white);
     }
 
-    /* 🔐 Key Screen */
-    .key-screen {
-      text-align: center;
-      animation: fadeIn 1.5s ease;
-    }
-
-    .key-screen h2 {
-      text-shadow: 0 0 20px var(--sun-glow);
-    }
-
-    .key-screen input {
-      padding: 15px;
-      font-size: 1.1rem;
-      border-radius: 10px;
-      border: none;
-      outline: none;
-      margin-top: 15px;
-      text-align: center;
-    }
-
-    .key-screen button {
-      margin-top: 15px;
-      padding: 12px 30px;
-      font-size: 1.1rem;
-      border: none;
-      border-radius: 30px;
-      background: var(--ink-black);
-      color: var(--cream-white);
-      cursor: pointer;
-      box-shadow: 0 0 20px rgba(0,0,0,0.4);
-    }
-
     /* 🎂 Intro */
     .intro {
-      display: none;
+      display: block; /* ✅ Show directly */
       text-align: center;
       animation: fadeIn 2s ease;
     }
@@ -151,7 +119,6 @@
 </head>
 <body>
 
-  
   <!-- 🎂 Intro -->
   <div class="intro" id="intro">
     <h1>@Darzy</h1><br>
@@ -172,14 +139,11 @@
   </div>
 
   <script>
-    
-
     function startSurprise() {
       document.getElementById('intro').style.display = 'none';
       document.getElementById('videoBox').style.display = 'block';
 
       const video = document.getElementById('birthdayVideo');
-      video.muted = false;
       video.currentTime = 0;
       video.play();
 
